@@ -1,0 +1,18 @@
+export const CARD_DIMENSIONS = {
+  PRINT_WIDTH: 750,
+  PRINT_HEIGHT: 1050,
+  PREVIEW_WIDTH: 375,
+  PREVIEW_HEIGHT: 525,
+  THUMBNAIL_WIDTH: 150,
+  THUMBNAIL_HEIGHT: 210,
+  ASPECT_RATIO: 5 / 7,
+} as const;
+
+export const PDF_SETTINGS = {
+  PAGE_SIZES: ["A4", "Letter"] as const,
+  DEFAULT_CARDS_PER_ROW: 3,
+  DEFAULT_MARGIN_MM: 10,
+  BLEED_MM: 3,
+} as const;
+
+export const AUTOSAVE_DELAY_MS = 500;

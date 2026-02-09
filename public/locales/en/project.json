@@ -1,0 +1,98 @@
+{
+  "create": {
+    "title": "Create Project",
+    "name": "Project Name",
+    "name_placeholder": "My Card Game",
+    "description": "Description (optional)",
+    "description_placeholder": "Describe your card game...",
+    "submit": "Create Project"
+  },
+  "view": {
+    "overview": "Overview",
+    "cards": "Cards",
+    "templates": "Templates",
+    "rules": "Rules",
+    "ai_create": "AI Create"
+  },
+  "rules": {
+    "title": "Game Rules",
+    "card_types": "Card Types",
+    "attributes": "Attributes / Stats",
+    "rarities": "Rarities",
+    "powers": "Powers / Abilities",
+    "tribes": "Tribes / Races",
+    "add": "Add",
+    "name": "Name",
+    "name_placeholder": "Enter a name...",
+    "description": "Description",
+    "description_placeholder": "Enter a description...",
+    "value_type": "Value Type",
+    "color": "Color",
+    "min_value": "Min",
+    "max_value": "Max",
+    "default_value": "Default",
+    "empty": "No {{type}} defined yet. Click Add to create one.",
+    "delete_title": "Delete {{name}}",
+    "delete_message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+    "number": "Number",
+    "text": "Text",
+    "boolean": "Boolean"
+  },
+  "template": {
+    "list_title": "Templates",
+    "new": "New Template",
+    "editor_title": "Template Editor",
+    "name": "Template Name",
+    "name_placeholder": "My Card Template",
+    "description": "Description",
+    "description_placeholder": "Describe this template...",
+    "fields": "Fields",
+    "style": "Style",
+    "global": "Card Settings",
+    "add_field": "Add Field",
+    "no_field_selected": "Select a field to edit its properties",
+    "field_properties": "Field Properties",
+    "empty": {
+      "title": "No templates yet",
+      "description": "Create a template to define how your cards will look.",
+      "cta": "Create Template"
+    },
+    "delete": {
+      "title": "Delete Template",
+      "message": "Are you sure you want to delete this template? This action cannot be undone.",
+      "confirm": "Delete Template"
+    },
+    "field_types": {
+      "name": "Name",
+      "illustration": "Illustration",
+      "description": "Description",
+      "stat": "Stat",
+      "type": "Type",
+      "rarity": "Rarity",
+      "power": "Power",
+      "tribe": "Tribe",
+      "custom_text": "Custom Text"
+    },
+    "settings": {
+      "background_color": "Background Color",
+      "border_color": "Border Color",
+      "border_width": "Border Width",
+      "border_radius": "Border Radius",
+      "position_x": "X Position (%)",
+      "position_y": "Y Position (%)",
+      "width": "Width (%)",
+      "height": "Height (%)",
+      "font_size": "Font Size",
+      "font_family": "Font Family",
+      "font_weight": "Font Weight",
+      "font_color": "Font Color",
+      "text_align": "Text Align",
+      "visible": "Visible"
+    }
+  },
+  "delete": {
+    "title": "Delete Project",
+    "message": "Are you sure you want to delete this project? This will also delete all cards, templates, and rules. This action cannot be undone.",
+    "confirm": "Delete Project"
+  }
+}

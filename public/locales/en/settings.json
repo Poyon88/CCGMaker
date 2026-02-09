@@ -1,0 +1,28 @@
+{
+  "title": "Settings",
+  "profile": {
+    "title": "Profile",
+    "display_name": "Display Name",
+    "email": "Email",
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm New Password",
+    "save": "Save Changes",
+    "saved": "Profile updated successfully"
+  },
+  "language": {
+    "title": "Language",
+    "description": "Choose your preferred language",
+    "en": "English",
+    "fr": "Français"
+  },
+  "danger": {
+    "title": "Danger Zone",
+    "logout": "Log Out",
+    "delete_account": "Delete Account",
+    "delete_warning": "This will permanently delete your account and all your data. This action cannot be undone.",
+    "delete_confirm": "Type DELETE to confirm",
+    "delete_button": "Permanently Delete Account"
+  }
+}

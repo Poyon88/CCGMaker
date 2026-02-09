@@ -1,0 +1,98 @@
+{
+  "create": {
+    "title": "Créer un Projet",
+    "name": "Nom du projet",
+    "name_placeholder": "Mon Jeu de Cartes",
+    "description": "Description (optionnel)",
+    "description_placeholder": "Décrivez votre jeu de cartes...",
+    "submit": "Créer le Projet"
+  },
+  "view": {
+    "overview": "Vue d'ensemble",
+    "cards": "Cartes",
+    "templates": "Templates",
+    "rules": "Règles",
+    "ai_create": "Création IA"
+  },
+  "rules": {
+    "title": "Règles du Jeu",
+    "card_types": "Types de Cartes",
+    "attributes": "Attributs / Stats",
+    "rarities": "Raretés",
+    "powers": "Pouvoirs / Capacités",
+    "tribes": "Tribus / Races",
+    "add": "Ajouter",
+    "name": "Nom",
+    "name_placeholder": "Entrez un nom...",
+    "description": "Description",
+    "description_placeholder": "Entrez une description...",
+    "value_type": "Type de valeur",
+    "color": "Couleur",
+    "min_value": "Min",
+    "max_value": "Max",
+    "default_value": "Défaut",
+    "empty": "Aucun(e) {{type}} défini(e). Cliquez sur Ajouter pour en créer.",
+    "delete_title": "Supprimer {{name}}",
+    "delete_message": "Êtes-vous sûr de vouloir supprimer \"{{name}}\" ? Cette action est irréversible.",
+    "number": "Nombre",
+    "text": "Texte",
+    "boolean": "Booléen"
+  },
+  "template": {
+    "list_title": "Templates",
+    "new": "Nouveau Template",
+    "editor_title": "Éditeur de Template",
+    "name": "Nom du template",
+    "name_placeholder": "Mon Template de Carte",
+    "description": "Description",
+    "description_placeholder": "Décrivez ce template...",
+    "fields": "Champs",
+    "style": "Style",
+    "global": "Paramètres de carte",
+    "add_field": "Ajouter un champ",
+    "no_field_selected": "Sélectionnez un champ pour modifier ses propriétés",
+    "field_properties": "Propriétés du champ",
+    "empty": {
+      "title": "Aucun template",
+      "description": "Créez un template pour définir l'apparence de vos cartes.",
+      "cta": "Créer un template"
+    },
+    "delete": {
+      "title": "Supprimer le template",
+      "message": "Êtes-vous sûr de vouloir supprimer ce template ? Cette action est irréversible.",
+      "confirm": "Supprimer le template"
+    },
+    "field_types": {
+      "name": "Nom",
+      "illustration": "Illustration",
+      "description": "Description",
+      "stat": "Stat",
+      "type": "Type",
+      "rarity": "Rareté",
+      "power": "Pouvoir",
+      "tribe": "Tribu",
+      "custom_text": "Texte personnalisé"
+    },
+    "settings": {
+      "background_color": "Couleur de fond",
+      "border_color": "Couleur de bordure",
+      "border_width": "Épaisseur de bordure",
+      "border_radius": "Rayon de bordure",
+      "position_x": "Position X (%)",
+      "position_y": "Position Y (%)",
+      "width": "Largeur (%)",
+      "height": "Hauteur (%)",
+      "font_size": "Taille de police",
+      "font_family": "Police",
+      "font_weight": "Graisse",
+      "font_color": "Couleur du texte",
+      "text_align": "Alignement",
+      "visible": "Visible"
+    }
+  },
+  "delete": {
+    "title": "Supprimer le Projet",
+    "message": "Êtes-vous sûr de vouloir supprimer ce projet ? Toutes les cartes, templates et règles seront aussi supprimés. Cette action est irréversible.",
+    "confirm": "Supprimer le Projet"
+  }
+}

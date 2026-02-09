@@ -1,0 +1,34 @@
+{
+  "app_name": "CCGMaker",
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "projects": "Mes Projets",
+    "cards": "Mes Cartes",
+    "export": "Exporter",
+    "settings": "Paramètres"
+  },
+  "actions": {
+    "create": "Créer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "duplicate": "Dupliquer",
+    "search": "Rechercher...",
+    "filter": "Filtrer",
+    "back": "Retour",
+    "confirm": "Confirmer",
+    "close": "Fermer"
+  },
+  "status": {
+    "loading": "Chargement...",
+    "saving": "Enregistrement...",
+    "saved": "Enregistré",
+    "error": "Une erreur est survenue",
+    "empty": "Rien ici pour le moment"
+  },
+  "guest_banner": {
+    "message": "Vous utilisez CCGMaker en mode invité. Créez un compte pour sauvegarder votre travail.",
+    "cta": "S'inscrire"
+  }
+}

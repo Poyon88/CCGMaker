@@ -1,0 +1,34 @@
+{
+  "app_name": "CCGMaker",
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "My Projects",
+    "cards": "My Cards",
+    "export": "Export",
+    "settings": "Settings"
+  },
+  "actions": {
+    "create": "Create",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "search": "Search...",
+    "filter": "Filter",
+    "back": "Back",
+    "confirm": "Confirm",
+    "close": "Close"
+  },
+  "status": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "error": "An error occurred",
+    "empty": "Nothing here yet"
+  },
+  "guest_banner": {
+    "message": "You're using CCGMaker as a guest. Create an account to save your work.",
+    "cta": "Sign Up"
+  }
+}

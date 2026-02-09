@@ -1,0 +1,52 @@
+{
+  "editor": {
+    "title": "Éditeur de Carte",
+    "new": "Nouvelle Carte",
+    "select_template": "Sélectionner un template",
+    "name": "Nom de la carte",
+    "illustration": "Illustration",
+    "upload_image": "Importer une image",
+    "generate_ai": "Générer avec l'IA",
+    "preview": "Aperçu"
+  },
+  "list": {
+    "title": "Cartes",
+    "search": "Rechercher des cartes...",
+    "filter_type": "Type",
+    "filter_rarity": "Rareté",
+    "filter_tribe": "Tribu",
+    "empty": {
+      "title": "Aucune carte",
+      "description": "Créez votre première carte pour la voir ici.",
+      "cta": "Créer une carte"
+    }
+  },
+  "detail": {
+    "edit": "Modifier",
+    "duplicate": "Dupliquer",
+    "delete": "Supprimer",
+    "ai_generated": "Générée par IA"
+  },
+  "ai": {
+    "title": "Créateur de Carte IA",
+    "step_project": "Projet & Template",
+    "step_type": "Type de carte",
+    "step_universe": "Univers / Thème",
+    "step_power": "Niveau de puissance",
+    "step_role": "Rôle",
+    "step_custom": "Requêtes spéciales",
+    "generate": "Générer la carte",
+    "generating": "Génération de votre carte...",
+    "generating_ai": "Utilisation de l'IA pour créer des données uniques...",
+    "generating_image": "Génération...",
+    "generate_image": "Générer l'illustration",
+    "regenerate": "Régénérer",
+    "save": "Sauvegarder",
+    "edit_result": "Modifier le résultat"
+  },
+  "delete": {
+    "title": "Supprimer la Carte",
+    "message": "Êtes-vous sûr de vouloir supprimer cette carte ? Cette action est irréversible.",
+    "confirm": "Supprimer la Carte"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Tableau de bord",
+  "welcome": "Bienvenue sur CCGMaker",
+  "new_project": "Nouveau Projet",
+  "new_card": "Nouvelle Carte",
+  "recent_cards": "Cartes récentes",
+  "my_projects": "Mes Projets",
+  "empty": {
+    "title": "Aucun projet",
+    "description": "Créez votre premier projet de jeu de cartes pour commencer.",
+    "cta": "Créer mon premier projet"
+  },
+  "project_card": {
+    "cards_count": "{{count}} carte(s)",
+    "templates_count": "{{count}} template(s)",
+    "updated": "Mis à jour {{date}}"
+  }
+}

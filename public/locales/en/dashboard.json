@@ -1,0 +1,18 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome to CCGMaker",
+  "new_project": "New Project",
+  "new_card": "New Card",
+  "recent_cards": "Recent Cards",
+  "my_projects": "My Projects",
+  "empty": {
+    "title": "No projects yet",
+    "description": "Create your first card game project to get started.",
+    "cta": "Create my first project"
+  },
+  "project_card": {
+    "cards_count": "{{count}} card(s)",
+    "templates_count": "{{count}} template(s)",
+    "updated": "Updated {{date}}"
+  }
+}

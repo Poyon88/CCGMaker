@@ -1,0 +1,32 @@
+{
+  "title": "Export",
+  "select_cards": "Select Cards to Export",
+  "format": {
+    "pdf": "PDF",
+    "json": "JSON"
+  },
+  "pdf": {
+    "settings": "PDF Settings",
+    "page_size": "Page Size",
+    "cards_per_row": "Cards per Row",
+    "margin": "Margin (mm)",
+    "include_bleed": "Include Bleed Area",
+    "preview": "Preview",
+    "download": "Download PDF",
+    "generating": "Generating PDF..."
+  },
+  "json": {
+    "options": "JSON Options",
+    "full_project": "Export Full Project",
+    "selected_only": "Export Selected Cards Only",
+    "include_rules": "Include Game Rules",
+    "include_templates": "Include Templates",
+    "preview": "Preview",
+    "download": "Download JSON",
+    "copy": "Copy to Clipboard"
+  },
+  "empty": {
+    "title": "No cards to export",
+    "description": "Create some cards first, then come back to export them."
+  }
+}

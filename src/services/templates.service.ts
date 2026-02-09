@@ -1,6 +1,15 @@
 import { supabase } from "@/config/supabase";
 import type { TablesInsert, TablesUpdate } from "@/types/database";
 
+export async function fetchAllTemplates() {
+  const { data, error } = await supabase
+    .from("templates")
+    .select("*")
+    .order("updated_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}
+
 export async function fetchTemplates(projectId: string) {
   const { data, error } = await supabase
     .from("templates")

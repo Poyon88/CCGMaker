@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Download, Copy, Layers } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { jsPDF } from "jspdf";
+import { Download, Copy, Layers, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { renderCardToCanvas } from "@/lib/render-card-to-canvas";
+import { fetchAllTemplates } from "@/services/templates.service";
+import { mapDbTemplate } from "@/lib/mappers";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
@@ -19,22 +25,30 @@ import { useCards } from "@/hooks/use-cards";
 import { useProjects } from "@/hooks/use-projects";
 import { useAuthStore } from "@/stores/auth-store";
 import { useGuestStore } from "@/stores/guest-store";
-import type { Template } from "@/types/template";
-
-function useAllTemplates(): Template[] {
+function useAllTemplates() {
   const isGuest = useAuthStore((s) => s.isGuest);
   const guestTemplates = useGuestStore((s) => s.templates);
-  // For guest mode, return all templates from the store
-  // For auth mode, this would need a cross-project query (TODO)
-  if (isGuest) return guestTemplates;
-  return guestTemplates;
+
+  const query = useQuery({
+    queryKey: ["templates", "all"],
+    queryFn: async () => {
+      const rows = await fetchAllTemplates();
+      return rows.map(mapDbTemplate);
+    },
+    enabled: !isGuest,
+  });
+
+  return {
+    templates: isGuest ? guestTemplates : (query.data ?? []),
+    isLoading: isGuest ? false : query.isLoading,
+  };
 }
 
 export default function ExportPage() {
   const { t } = useTranslation("export");
   const { cards } = useCards();
   const { projects } = useProjects();
-  const allTemplates = useAllTemplates();
+  const { templates: allTemplates } = useAllTemplates();
 
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [pageSize, setPageSize] = useState("A4");
@@ -42,6 +56,7 @@ export default function ExportPage() {
   const [includeRules, setIncludeRules] = useState(true);
   const [includeTemplates, setIncludeTemplates] = useState(true);
   const [jsonMode, setJsonMode] = useState<"full" | "selected">("full");
+  const [pdfGenerating, setPdfGenerating] = useState(false);
 
   const toggleCard = (id: string) => {
     setSelectedIds((prev) => {
@@ -55,8 +70,80 @@ export default function ExportPage() {
   const selectAll = () => setSelectedIds(new Set(cards.map((c) => c.id)));
   const selectNone = () => setSelectedIds(new Set());
 
-  const getTemplate = (templateId: string | null) =>
-    allTemplates.find((tpl) => tpl.id === templateId);
+  const getTemplate = useCallback(
+    (templateId: string | null) => allTemplates.find((tpl) => tpl.id === templateId),
+    [allTemplates],
+  );
+
+  const handleDownloadPdf = useCallback(async () => {
+    const selected = cards.filter((c) => selectedIds.has(c.id));
+    if (selected.length === 0) return;
+
+    setPdfGenerating(true);
+    try {
+      const pageMm = pageSize === "A4" ? { w: 210, h: 297 } : { w: 215.9, h: 279.4 };
+      const marginMm = 10;
+      const usableW = pageMm.w - marginMm * 2;
+      const usableH = pageMm.h - marginMm * 2;
+      const gapMm = 4;
+
+      const cardWMm = (usableW - gapMm * (cardsPerRow - 1)) / cardsPerRow;
+
+      const firstTpl = getTemplate(selected[0].templateId);
+      const aspectRatio = firstTpl
+        ? firstTpl.definition.height / firstTpl.definition.width
+        : 1.4;
+      const cardHMm = cardWMm * aspectRatio;
+
+      const rowsPerPage = Math.max(1, Math.floor((usableH + gapMm) / (cardHMm + gapMm)));
+      const cardsPerPage = cardsPerRow * rowsPerPage;
+
+      // Render at 2x pixel density for sharp output
+      const renderWidthPx = Math.round(cardWMm * 3.78 * 2);
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: pageSize === "A4" ? "a4" : "letter",
+      });
+
+      let cardIndex = 0;
+      for (const card of selected) {
+        const tpl = getTemplate(card.templateId);
+        if (!tpl) continue;
+
+        const pageIdx = Math.floor(cardIndex / cardsPerPage);
+        const posOnPage = cardIndex % cardsPerPage;
+        const col = posOnPage % cardsPerRow;
+        const row = Math.floor(posOnPage / cardsPerRow);
+
+        if (posOnPage === 0 && pageIdx > 0) {
+          pdf.addPage();
+        }
+
+        // Render card directly to a Canvas 2D (no html2canvas)
+        const canvas = await renderCardToCanvas(
+          tpl.definition,
+          card.fieldValues,
+          renderWidthPx,
+        );
+
+        const imgData = canvas.toDataURL("image/png");
+        const x = marginMm + col * (cardWMm + gapMm);
+        const y = marginMm + row * (cardHMm + gapMm);
+        pdf.addImage(imgData, "PNG", x, y, cardWMm, cardHMm);
+
+        cardIndex++;
+      }
+
+      pdf.save("ccgmaker-cards.pdf");
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      toast.error("PDF generation failed");
+    } finally {
+      setPdfGenerating(false);
+    }
+  }, [cards, selectedIds, pageSize, cardsPerRow, getTemplate]);
 
   const buildJsonData = () => {
     const selectedCards = jsonMode === "full" ? cards : cards.filter((c) => selectedIds.has(c.id));
@@ -182,13 +269,17 @@ export default function ExportPage() {
               </Select>
             </div>
           </div>
-          <Button disabled={selectedIds.size === 0}>
-            <Download className="mr-1 h-4 w-4" />
-            {t("pdf.download")}
+          <Button
+            disabled={selectedIds.size === 0 || pdfGenerating}
+            onClick={handleDownloadPdf}
+          >
+            {pdfGenerating ? (
+              <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+            ) : (
+              <Download className="mr-1 h-4 w-4" />
+            )}
+            {pdfGenerating ? t("pdf.generating") : t("pdf.download")}
           </Button>
-          <p className="text-xs text-muted-foreground">
-            PDF export will be connected in a later phase (requires html2canvas + jsPDF).
-          </p>
         </TabsContent>
 
         <TabsContent value="json" className="space-y-4">
@@ -236,6 +327,7 @@ export default function ExportPage() {
           </div>
         </TabsContent>
       </Tabs>
+
     </div>
   );
 }

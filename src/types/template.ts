@@ -24,6 +24,8 @@ export interface TemplateField {
   borderRadius: number;
   visible: boolean;
   attributeId?: string;
+  objectFit?: "cover" | "contain" | "fill";
+  clipShape?: "rectangle" | "ellipse";
 }
 
 export interface TemplateDefinition {

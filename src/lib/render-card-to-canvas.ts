@@ -125,11 +125,16 @@ export async function renderCardToCanvas(
       try {
         const img = await loadImage(value);
         ctx.save();
-        if (field.borderRadius > 0) {
+        if (field.clipShape === "ellipse") {
+          ctx.beginPath();
+          ctx.ellipse(fx + fw / 2, fy + fh / 2, fw / 2, fh / 2, 0, 0, Math.PI * 2);
+          ctx.clip();
+        } else if (field.borderRadius > 0) {
           ctx.beginPath();
           ctx.roundRect(fx, fy, fw, fh, field.borderRadius * scale);
           ctx.clip();
         }
+        // Always stretch to fill the exact zone
         ctx.drawImage(img, fx, fy, fw, fh);
         ctx.restore();
       } catch {

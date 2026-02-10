@@ -6,6 +6,7 @@
     "name": "Nom de la carte",
     "illustration": "Illustration",
     "upload_image": "Importer une image",
+    "replace_image": "Remplacer",
     "generate_ai": "Générer avec l'IA",
     "preview": "Aperçu"
   },

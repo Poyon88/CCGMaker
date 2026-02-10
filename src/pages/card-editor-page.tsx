@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { fileToDataUrl, resizeImageToDataUrl } from "@/lib/image-utils";
 
 import { ArrowLeft, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,12 +66,31 @@ export default function CardEditorPage() {
     [templates, localCard.templateId]
   );
 
+  const illustrationInputRef = useRef<HTMLInputElement>(null);
+  const illustrationFieldIdRef = useRef<string | null>(null);
+
   const handleFieldChange = (fieldId: string, value: string) => {
     setLocalCard((prev) => ({
       ...prev,
       fieldValues: { ...prev.fieldValues, [fieldId]: value },
       updatedAt: new Date().toISOString(),
     }));
+  };
+
+  const handleIllustrationClick = (fieldId: string) => {
+    illustrationFieldIdRef.current = fieldId;
+    illustrationInputRef.current?.click();
+  };
+
+  const handleIllustrationFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    const fieldId = illustrationFieldIdRef.current;
+    if (!file || !fieldId) return;
+    if (!file.type.startsWith("image/")) return;
+    const dataUrl = await fileToDataUrl(file);
+    const resized = await resizeImageToDataUrl(dataUrl, 750, 1050);
+    handleFieldChange(fieldId, resized);
+    e.target.value = "";
   };
 
   const handleSave = () => {
@@ -159,10 +179,18 @@ export default function CardEditorPage() {
 
         {/* Right: preview */}
         <div className="flex flex-1 items-start justify-center rounded-lg border bg-muted/30 p-8">
+          <input
+            ref={illustrationInputRef}
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={handleIllustrationFile}
+            className="hidden"
+          />
           {selectedTemplate ? (
             <CardRenderer
               definition={selectedTemplate.definition}
               fieldValues={localCard.fieldValues}
+              onIllustrationClick={handleIllustrationClick}
             />
           ) : (
             <p className="text-sm text-muted-foreground">{t("card:editor.select_template")}</p>

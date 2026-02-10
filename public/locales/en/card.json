@@ -6,6 +6,7 @@
     "name": "Card Name",
     "illustration": "Illustration",
     "upload_image": "Upload Image",
+    "replace_image": "Replace",
     "generate_ai": "Generate with AI",
     "preview": "Preview"
   },

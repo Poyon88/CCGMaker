@@ -100,7 +100,9 @@
       "font_weight": "Graisse",
       "font_color": "Couleur du texte",
       "text_align": "Alignement",
-      "visible": "Visible"
+      "visible": "Visible",
+      "transparent": "Transparent",
+      "oval_shape": "Forme ovale"
     }
   },
   "delete": {

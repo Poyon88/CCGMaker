@@ -36,6 +36,16 @@ export function TemplateEditor({ template, onChange }: TemplateEditorProps) {
     updateFields(definition.fields.map((f) => (f.id === updated.id ? updated : f)));
   };
 
+  const handleFieldMove = (fieldId: string, x: number, y: number) => {
+    const field = definition.fields.find((f) => f.id === fieldId);
+    if (field) updateField({ ...field, x: Math.round(x), y: Math.round(y) });
+  };
+
+  const handleFieldResize = (fieldId: string, w: number, h: number, x: number, y: number) => {
+    const field = definition.fields.find((f) => f.id === fieldId);
+    if (field) updateField({ ...field, width: Math.round(w), height: Math.round(h), x: Math.round(x), y: Math.round(y) });
+  };
+
   return (
     <div className="flex gap-6">
       {/* Left panel - Settings */}
@@ -103,6 +113,8 @@ export function TemplateEditor({ template, onChange }: TemplateEditorProps) {
           definition={definition}
           selectedFieldId={selectedFieldId}
           onFieldClick={setSelectedFieldId}
+          onFieldMove={handleFieldMove}
+          onFieldResize={handleFieldResize}
         />
       </div>
     </div>

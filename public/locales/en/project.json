@@ -100,7 +100,9 @@
       "font_weight": "Font Weight",
       "font_color": "Font Color",
       "text_align": "Text Align",
-      "visible": "Visible"
+      "visible": "Visible",
+      "transparent": "Transparent",
+      "oval_shape": "Oval shape"
     }
   },
   "delete": {

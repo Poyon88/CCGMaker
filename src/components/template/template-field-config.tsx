@@ -79,6 +79,19 @@ export function TemplateFieldConfig({ field, onChange }: TemplateFieldConfigProp
         </div>
       </div>
 
+      {/* Illustration: oval clip shape */}
+      {field.type === "illustration" && (
+        <div className="flex items-center justify-between">
+          <Label className="text-xs">{t("template.settings.oval_shape")}</Label>
+          <Switch
+            checked={field.clipShape === "ellipse"}
+            onCheckedChange={(checked) =>
+              update({ clipShape: checked ? "ellipse" : "rectangle" })
+            }
+          />
+        </div>
+      )}
+
       {/* Font */}
       {field.type !== "illustration" && (
         <>
@@ -145,13 +158,24 @@ export function TemplateFieldConfig({ field, onChange }: TemplateFieldConfigProp
       )}
 
       {/* Background & Border */}
-      <div className="grid grid-cols-2 gap-2">
-        <div className="space-y-1">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
           <Label className="text-xs">{t("template.settings.background_color")}</Label>
+          <div className="flex items-center gap-2">
+            <Label className="text-xs text-muted-foreground">{t("template.settings.transparent")}</Label>
+            <Switch
+              checked={!field.backgroundColor || field.backgroundColor === "transparent"}
+              onCheckedChange={(checked) =>
+                update({ backgroundColor: checked ? "" : "#ffffff" })
+              }
+            />
+          </div>
+        </div>
+        {field.backgroundColor && field.backgroundColor !== "transparent" && (
           <div className="flex gap-1">
             <input
               type="color"
-              value={field.backgroundColor || "#ffffff"}
+              value={field.backgroundColor}
               onChange={(e) => update({ backgroundColor: e.target.value })}
               className="h-9 w-9 cursor-pointer rounded border"
             />
@@ -160,16 +184,16 @@ export function TemplateFieldConfig({ field, onChange }: TemplateFieldConfigProp
               onChange={(e) => update({ backgroundColor: e.target.value })}
             />
           </div>
-        </div>
-        <div className="space-y-1">
-          <Label className="text-xs">{t("template.settings.border_radius")}</Label>
-          <Input
-            type="number"
-            min={0}
-            value={field.borderRadius}
-            onChange={(e) => update({ borderRadius: Number(e.target.value) })}
-          />
-        </div>
+        )}
+      </div>
+      <div className="space-y-1">
+        <Label className="text-xs">{t("template.settings.border_radius")}</Label>
+        <Input
+          type="number"
+          min={0}
+          value={field.borderRadius}
+          onChange={(e) => update({ borderRadius: Number(e.target.value) })}
+        />
       </div>
 
       {/* Visible */}

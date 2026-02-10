@@ -33,23 +33,29 @@ export function CardRenderer({
   const { width, height, backgroundColor, borderColor, borderWidth, borderRadius, fields, backgroundImage, backgroundImageFit } =
     definition;
 
+  const hasBackgroundImage = !!backgroundImage;
+
   return (
     <div
       className={cn("relative overflow-hidden", className)}
       style={{
         width: width * scale,
         height: height * scale,
-        backgroundColor,
-        border: `${borderWidth * scale}px solid ${borderColor}`,
-        borderRadius: borderRadius * scale,
-        ...(backgroundImage ? {
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: backgroundImageFit === "contain" ? "contain"
-            : backgroundImageFit === "fill" ? "100% 100%"
-            : "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        } : {}),
+        ...(hasBackgroundImage
+          ? {
+              backgroundColor: "transparent",
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: backgroundImageFit === "contain" ? "contain"
+                : backgroundImageFit === "fill" ? "100% 100%"
+                : "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }
+          : {
+              backgroundColor,
+              border: `${borderWidth * scale}px solid ${borderColor}`,
+              borderRadius: borderRadius * scale,
+            }),
       }}
     >
       {fields

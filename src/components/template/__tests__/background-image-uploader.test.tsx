@@ -18,8 +18,9 @@ vi.mock("sonner", () => ({
   toast: { error: vi.fn(), success: vi.fn() },
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 vi.mock("@/stores/auth-store", () => ({
-  useAuthStore: vi.fn((selector: (s: Record<string, unknown>) => unknown) =>
+  useAuthStore: vi.fn((selector: any) =>
     selector({ user: null, isGuest: true }),
   ),
 }));
@@ -236,15 +237,17 @@ describe("BackgroundImageUploader – PDF upload (guest mode)", () => {
 describe("BackgroundImageUploader – PDF upload (authenticated mode)", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useAuthStore).mockImplementation(
-      (selector: (s: Record<string, unknown>) => unknown) =>
+      (selector: any) =>
         selector({ user: { id: "user-42" }, isGuest: false }) as never,
     );
   });
 
   afterEach(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useAuthStore).mockImplementation(
-      (selector: (s: Record<string, unknown>) => unknown) =>
+      (selector: any) =>
         selector({ user: null, isGuest: true }) as never,
     );
   });

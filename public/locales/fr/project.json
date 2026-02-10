@@ -73,6 +73,19 @@
       "tribe": "Tribu",
       "custom_text": "Texte personnalisé"
     },
+    "background_image": {
+      "label": "Image de fond",
+      "upload": "Importer une image",
+      "replace": "Remplacer",
+      "remove": "Supprimer",
+      "fit": "Ajustement",
+      "fit_cover": "Couvrir",
+      "fit_contain": "Contenir",
+      "fit_fill": "Remplir",
+      "error_type": "Type de fichier non supporté. Utilisez PNG, JPG ou PDF.",
+      "error_size": "Le fichier est trop volumineux. Taille maximum : 5 Mo.",
+      "error_upload": "Échec de l'import de l'image."
+    },
     "settings": {
       "background_color": "Couleur de fond",
       "border_color": "Couleur de bordure",

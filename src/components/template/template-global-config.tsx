@@ -1,14 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { BackgroundImageUploader } from "./background-image-uploader";
 import type { TemplateDefinition } from "@/types/template";
 
 interface TemplateGlobalConfigProps {
   definition: TemplateDefinition;
   onChange: (updated: TemplateDefinition) => void;
+  templateId: string;
+  isGuest: boolean;
 }
 
-export function TemplateGlobalConfig({ definition, onChange }: TemplateGlobalConfigProps) {
+export function TemplateGlobalConfig({ definition, onChange, templateId, isGuest }: TemplateGlobalConfigProps) {
   const { t } = useTranslation("project");
 
   const update = (patch: Partial<TemplateDefinition>) =>
@@ -71,6 +75,16 @@ export function TemplateGlobalConfig({ definition, onChange }: TemplateGlobalCon
           />
         </div>
       </div>
+
+      <Separator />
+
+      <BackgroundImageUploader
+        backgroundImage={definition.backgroundImage}
+        backgroundImageFit={definition.backgroundImageFit}
+        templateId={templateId}
+        isGuest={isGuest}
+        onChange={update}
+      />
     </div>
   );
 }

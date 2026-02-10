@@ -73,6 +73,19 @@
       "tribe": "Tribe",
       "custom_text": "Custom Text"
     },
+    "background_image": {
+      "label": "Background Image",
+      "upload": "Upload Image",
+      "replace": "Replace",
+      "remove": "Remove",
+      "fit": "Image Fit",
+      "fit_cover": "Cover",
+      "fit_contain": "Contain",
+      "fit_fill": "Fill",
+      "error_type": "Unsupported file type. Use PNG, JPG, or PDF.",
+      "error_size": "File is too large. Maximum size is 5MB.",
+      "error_upload": "Failed to upload image."
+    },
     "settings": {
       "background_color": "Background Color",
       "border_color": "Border Color",

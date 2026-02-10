@@ -30,7 +30,7 @@ export function CardRenderer({
   onFieldClick,
   className,
 }: CardRendererProps) {
-  const { width, height, backgroundColor, borderColor, borderWidth, borderRadius, fields } =
+  const { width, height, backgroundColor, borderColor, borderWidth, borderRadius, fields, backgroundImage, backgroundImageFit } =
     definition;
 
   return (
@@ -42,6 +42,14 @@ export function CardRenderer({
         backgroundColor,
         border: `${borderWidth * scale}px solid ${borderColor}`,
         borderRadius: borderRadius * scale,
+        ...(backgroundImage ? {
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: backgroundImageFit === "contain" ? "contain"
+            : backgroundImageFit === "fill" ? "100% 100%"
+            : "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        } : {}),
       }}
     >
       {fields

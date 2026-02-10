@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(node -e:*)",
+      "Bash(npx supabase:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git -C /Users/encellefabrice/Desktop/CCGMaker-main status)",
+      "Bash(git -C /Users/encellefabrice/Desktop/CCGMaker-main log --oneline -5)",
+      "Bash(git -C /Users/encellefabrice/Desktop/CCGMaker-main add .env.example .gitignore PRD_CCGMaker.pdf README.md components.json eslint.config.js index.html package-lock.json package.json public/ src/ tsconfig.app.json tsconfig.json tsconfig.node.json vite.config.ts .claude/)"
+    ]
+  }
+}

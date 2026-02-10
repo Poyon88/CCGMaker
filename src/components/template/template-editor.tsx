@@ -8,6 +8,7 @@ import { CardRenderer } from "@/components/card/card-renderer";
 import { TemplateFieldList } from "./template-field-list";
 import { TemplateFieldConfig } from "./template-field-config";
 import { TemplateGlobalConfig } from "./template-global-config";
+import { useAuthStore } from "@/stores/auth-store";
 import type { Template, TemplateField, TemplateDefinition } from "@/types/template";
 
 interface TemplateEditorProps {
@@ -17,6 +18,7 @@ interface TemplateEditorProps {
 
 export function TemplateEditor({ template, onChange }: TemplateEditorProps) {
   const { t } = useTranslation("project");
+  const isGuest = useAuthStore((s) => s.isGuest);
   const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
 
   const definition = template.definition;
@@ -70,7 +72,7 @@ export function TemplateEditor({ template, onChange }: TemplateEditorProps) {
         <Separator />
 
         {/* Global card settings */}
-        <TemplateGlobalConfig definition={definition} onChange={updateDefinition} />
+        <TemplateGlobalConfig definition={definition} onChange={updateDefinition} templateId={template.id} isGuest={isGuest} />
 
         <Separator />
 

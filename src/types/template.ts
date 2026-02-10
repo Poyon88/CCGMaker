@@ -34,6 +34,8 @@ export interface TemplateDefinition {
   borderWidth: number;
   borderRadius: number;
   fields: TemplateField[];
+  backgroundImage?: string;
+  backgroundImageFit?: "cover" | "contain" | "fill";
 }
 
 export interface TemplateStyle {
